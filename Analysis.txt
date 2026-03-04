@@ -1,0 +1,20 @@
+1. What's the difference between calling task.run() and new Thread(task).start()? Try both and observe what happens. Which one creates actual concurrency?
+	Calling task.run() executes the method in the current thread without creating a new thread, and thus creates no concurrency. Calling Thread(task).start() calls run() in a brand new thread, leading to concurrency.
+
+2. Why do the threads finish in different orders each time you run option 2? What does this tell you about concurrent execution?
+	Threads finish in different orders each time that you run option 2 because it is nondeterministic, which tells you that you cannot guarantee the order of execution will always be the same.
+
+3. What would happen if you didn't call join() before accessing the results? Try removing the join() calls - what goes wrong?
+	If you didn't call join() before accessing the results, then the main thread will not wait for the other threads to finish before continuing and would print an incorrect value. When I remove the join calls, the program returns 0 as the value of the Fibonnaci and sum of squares value and then later prints the correct values after the "Enter your choice: " prompt appears.
+
+4. How does thread execution interleave? Notice how the console output from different threads mixes together. Is this random?
+	The thread execution interleaves randomly based on the OS thread scheduling.
+
+5. Why do we need the Thread.sleep() calls in the calculations? What happens if you remove them? Does it affect correctness or just visibility?
+	Thread.sleep() is used to simulate computation work. Removing it does not impact correctness, but only visibility.
+
+6. What happens to the calc object when you create the Runnable? How does the thread access the same CalculatorBase instance?
+	When you create the Runnable, it receives a reference to the calc object. The thread access the same CalculatorBase instance by using the same reference.
+
+7. Can you use a lambda expression instead of an anonymous class? Which style is more concise? Which is clearer?
+	You can use a lambda expression instead of an anonymous class. The lambda expression is more concise and also clearer.
